@@ -1,0 +1,77 @@
+.background-image {
+  background-image: url('/assets/img/imgbackground.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+}
+
+
+
+ion-content {
+  position: relative;
+  z-index: 1;
+}
+
+.centrar {
+    text-align: center;
+  }
+  
+
+  .roboto-slab-bold {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+  }
+  
+  .center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .center-content img {
+    margin: 10px;
+    max-width: 100%;
+  }
+  
+  .social-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Espacio entre los iconos */
+    padding: 20px;
+  }
+  
+  .social-icon {
+    width: 50px; /* tamaño de los iconos */
+    height: 50px;
+    transition: transform 0.3s;
+  }
+  
+  .social-icon:hover {
+    transform: scale(1.8); /* Efecto hover para agrandar el icono */
+  }
+  
+
+.decorated-text {
+    font-size: 0.9em;
+    text-align: center;
+  }
+  
+  .decorated-text span {
+    margin: 0 10px; /* Espacio alrededor de los símbolos decorativos */
+    color: #c2cde0; /* Color de los símbolos decorativos */
+  }
+
+
+  .firma {
+    text-align: center;
+    font-size: 0.8em;
+    color: #7e7b7b; /* Ajusta el color  */
+  }

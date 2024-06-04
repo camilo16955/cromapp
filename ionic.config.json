@@ -1,0 +1,7 @@
+{
+  "name": "CromApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

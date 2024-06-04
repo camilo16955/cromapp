@@ -1,0 +1,64 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Equipos </ion-title>
+    <ion-buttons slot="end">
+      <img src="assets/img/logo1.png" alt="Logo" style="width: 30px; height: 30px; margin-right: 10px;">
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-text color="Light">
+  <div class="centrar roboto-slab-bold">
+    <h1>Listado de equipos</h1>
+    <p>Equipamiento de calidad profesional para lo que necesites</p>
+  </div>
+</ion-text>
+
+
+
+<ion-content>
+  <div class="center-content">
+    <img src="assets/img/sala1.jpg" alt="sala7">
+    <ion-text>
+      <p class="centrar">Revisa nuestros equipos a tu disposicion y selecciona
+        los que te interesen, luego presiona confirmar para agendar 
+        tu solicitud.
+      </p>
+    </ion-text>
+  </div>
+  
+  <!-- Recorre cada grupo de productos -->
+  <ion-accordion-group>
+    <ion-accordion *ngFor="let grupo of gruposDeProductos">
+      <ion-item slot="header">
+        <ion-label>{{ grupo.tipo }}</ion-label>
+      </ion-item>
+      <ion-list slot="content">
+        <!-- Recorre cada producto dentro del grupo -->
+        <ion-item *ngFor="let producto of grupo.productos">
+          <!-- Imagen del producto -->
+          <ion-thumbnail slot="start">
+            <img [src]="producto.imagen">
+          </ion-thumbnail>
+          <!-- Etiquetas de título y descripción del producto -->
+          <ion-label>
+            <h2>{{ producto.titulo }}</h2>
+            <p>{{ producto.descripcion }}</p>
+          </ion-label>
+          <!-- Checkbox para seleccionar el producto -->
+          <ion-checkbox slot="end" [(ngModel)]="producto.seleccionado"></ion-checkbox>
+        </ion-item>
+      </ion-list>
+    </ion-accordion>
+  </ion-accordion-group>
+  <!-- Botón para confirmar la selección de productos -->
+  <ion-button expand="full" color="secondary" (click)="confirmarSeleccion()">Confirmar</ion-button>
+
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title size="small" class="firma">© 2024 La Cueva del Cromañón. 
+      Todos los derechos reservados. Powered by "cambrah" </ion-title>
+  </ion-toolbar>
+</ion-footer>
+</ion-content>

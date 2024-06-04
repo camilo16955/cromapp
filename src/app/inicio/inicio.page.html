@@ -1,0 +1,80 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>inicio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<!-- Imagen de fondo de la app -->
+
+<ion-content [fullscreen]="true" class="background-image">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">inicio</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!--Titulo-->
+
+  <ion-text color="Light">
+    <div class="centrar roboto-slab-bold">
+      <h1>Bienvenido a la cueva del cromañon</h1>
+      <p class="decorated-text"> &#9679; Sala de ensayo &#9679; Producción &#9679; Backline</p>
+    </div>
+  </ion-text>
+
+  <!--Logo empresa -->
+
+  <div class="center-content">
+    <img src="assets/img/logo1.png" alt="Imagen 1">
+  </div>
+
+  <ion-text color="Light">
+    <p class="centrar"> ¡El mejor espacio que tú y tu banda se merecen!</p>
+  </ion-text>  
+
+  <!-- Botones a redes sociales -->
+
+  <div class="social-links">
+    <a href="https://www.facebook.com/lacuevadelcromanon/" target="_blank">
+      <img src="assets/img/facelog.png" alt="Facebook" class="social-icon">
+    </a>
+    <a href="https://www.instagram.com/lacuevadelcromanon/?hl=es" target="_blank">
+      <img src="assets/img/instalog.png" alt="Instagram" class="social-icon">
+    </a>
+    <a href="https://www.youtube.com/channel/UCiAxH5A17UhFWlw5P8Y19yw" target="_blank">
+      <img src="assets/img/youtubelog.png" alt="YouTube" class="social-icon">
+    </a>
+  </div>
+  <div>
+    <ion-text>  Acceder a nuestros servicios:</ion-text>
+  </div>
+  
+  <!-- Formulario de inicio de sesión -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Iniciar Sesión</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form (ngSubmit)="onSubmit()">
+        <ion-item>
+          <ion-label position="floating">Usuario</ion-label>
+          <ion-input type="text" [(ngModel)]="username" name="username" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input type="password" [(ngModel)]="password" name="password" required></ion-input>
+        </ion-item>
+        <ion-button expand="full" type="submit" color="secondary">Ingresar</ion-button>
+        <ion-button expand="full" color="secondary" (click)="registrarse()">Registrarse</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+  <ion-footer>
+    <ion-toolbar>
+      <ion-title size="small" class="firma">© 2024 La Cueva del Cromañón. Todos los derechos reservados.(cambrah)</ion-title>
+    </ion-toolbar>
+  </ion-footer>
+
+</ion-content>
+
