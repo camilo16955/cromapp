@@ -1,9 +1,16 @@
-import type { CapacitorConfig } from '@capacitor/cli';
+import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'io.ionic.starter',
-  appName: 'CromApp',
-  webDir: 'www'
+  appName: 'MyApp',
+  webDir: 'www',
+  bundledWebRuntime: false,
+  plugins: {
+    CapacitorSQLite: {},
+    Camera: {
+      iosPasteboard: true
+    }
+  }
 };
 
 export default config;

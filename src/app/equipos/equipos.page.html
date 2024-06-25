@@ -1,26 +1,30 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Equipos </ion-title>
+    <ion-title>Equipos</ion-title>
     <ion-buttons slot="end">
       <img src="assets/img/logo1.png" alt="Logo" style="width: 30px; height: 30px; margin-right: 10px;">
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-text color="Light">
-  <div class="centrar roboto-slab-bold">
-    <h1>Listado de equipos</h1>
-    <p>Equipamiento de calidad profesional para lo que necesites</p>
-  </div>
-</ion-text>
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Equipos</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
+  <ion-text color="light">
+    <div class="centrar roboto-slab-bold">
+      <h1>Listado de equipos</h1>
+      <p>Equipamiento de calidad profesional para lo que necesites</p>
+    </div>
+  </ion-text>
 
-
-<ion-content>
   <div class="center-content">
-    <img src="assets/img/sala1.jpg" alt="sala7">
+    <img src="assets/img/sala1.jpg" alt="Sala de Equipos">
     <ion-text>
-      <p class="centrar">Revisa nuestros equipos a tu disposicion y selecciona
+      <p class="centrar">Revisa nuestros equipos a tu disposición y selecciona
         los que te interesen, luego presiona confirmar para agendar 
         tu solicitud.
       </p>
@@ -38,7 +42,7 @@
         <ion-item *ngFor="let producto of grupo.productos">
           <!-- Imagen del producto -->
           <ion-thumbnail slot="start">
-            <img [src]="producto.imagen">
+            <img [src]="producto.imagen" alt="{{ producto.titulo }}">
           </ion-thumbnail>
           <!-- Etiquetas de título y descripción del producto -->
           <ion-label>
@@ -54,11 +58,10 @@
   <!-- Botón para confirmar la selección de productos -->
   <ion-button expand="full" color="secondary" (click)="confirmarSeleccion()">Confirmar</ion-button>
 
-
-<ion-footer>
-  <ion-toolbar>
-    <ion-title size="small" class="firma">© 2024 La Cueva del Cromañón. 
-      Todos los derechos reservados. Powered by "cambrah" </ion-title>
-  </ion-toolbar>
-</ion-footer>
+  <ion-footer>
+    <ion-toolbar>
+      <ion-title size="small" class="firma">© 2024 La Cueva del Cromañón. 
+        Todos los derechos reservados. Powered by "cambrah"</ion-title>
+    </ion-toolbar>
+  </ion-footer>
 </ion-content>

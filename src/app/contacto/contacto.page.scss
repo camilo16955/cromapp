@@ -1,33 +1,40 @@
-.color-rojo{
-    color: red;
-    
+.color-rojo {
+  color: red;
 }
 
-
 .firma {
-    text-align: center;
-    font-size: 0.8em;
-    color: #7e7b7b; 
-  }
+  text-align: center;
+  font-size: 0.8em;
+  color: #7e7b7b; 
+}
 
-  
 .centrar {
-    text-align: center;
-  }
-  
-  .roboto-slab-bold {
-    font-family: 'Roboto Slab', serif;
-    font-weight: 700;
-  }
+  text-align: center;
+}
 
-  .center-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
-  
-  .center-content img {
-    margin: 10px;
-    max-width: 100%;
-  }
+.roboto-slab-bold {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 700;
+}
+
+.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.center-content img {
+  margin: 10px;
+  max-width: 100%;
+  height: auto;
+}
+
+ion-item {
+  --background: #fff;
+  --color: #000;
+}
+
+ion-input {
+  --placeholder-color: #999;
+}

@@ -1,48 +1,53 @@
 .input-item {
-    --background: white;
-    --color: black;
-    transition: background-color 0.3 ease, color 0.3s ease;
-
-}
-.input-item.focused{
-    --background: black;
-    --color: white;
-
+  --background: white;
+  --color: black;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.btn-complete{
-    background-color: green;
+.input-item.focused {
+  --background: black;
+  --color: white;
 }
 
-.btn-incomplete{
-    background-color: red;
+.btn-complete {
+  background-color: green;
 }
 
+.btn-incomplete {
+  background-color: red;
+}
 
 .firma {
-    text-align: center;
-    font-size: 0.8em;
-    color: #7e7b7b; /* Ajusta el color */
-  }
+  text-align: center;
+  font-size: 0.8em;
+  color: #7e7b7b; /* Ajusta el color */
+}
 
-  
 .centrar {
-    text-align: center;
-  }
-  
-  .roboto-slab-bold {
-    font-family: 'Roboto Slab', serif;
-    font-weight: 700;
-  }
+  text-align: center;
+}
 
-  .center-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
-  
-  .center-content img {
-    margin: 10px;
-    max-width: 100%;
-  }
+.roboto-slab-bold {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 700;
+}
+
+.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px 0;
+}
+
+.center-content img {
+  margin: 10px;
+  max-width: 100%;
+  height: auto;
+}
+
+ion-thumbnail img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
