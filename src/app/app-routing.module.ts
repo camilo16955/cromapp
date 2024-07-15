@@ -1,28 +1,31 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './guards/auth.guard'; // Importa el AuthGuard
+import { AuthGuard } from './guards/auth.guard';
+import { SomeComponent } from './some-component/some-component.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'tabs',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
     path: 'tabs',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'notfound',
-    loadChildren: () => import('./notfound/notfound.module').then( m => m.NotfoundPageModule)
+    loadChildren: () => import('./notfound/notfound.module').then(m => m.NotfoundPageModule)
   },
   {
     path: 'register',
-    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
+    loadChildren: () => import('./register/register.module').then(m => m.RegisterPageModule)
   },
   {
     path: 'inicio',
-    loadChildren: () => import('./inicio/inicio.module').then(m => m.InicioPageModule)
+    loadChildren: () => import('./inicio/inicio.module').then(m => m.InicioPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'agenda',
@@ -40,22 +43,29 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule)
   },
   {
     path: 'database-test',
-    loadChildren: () => import('./pages/database-test/database-test.module').then(m => m.DatabaseTestPageModule)
+    loadChildren: () => import('./pages/database-test/database-test.module').then(m => m.DatabaseTestPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'api-test',
-    loadChildren: () => import('./pages/api-test/api-test.module').then(m => m.ApiTestPageModule)
+    loadChildren: () => import('./pages/api-test/api-test.module').then(m => m.ApiTestPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'camera-test',
-    loadChildren: () => import('./pages/camera-test/camera-test.module').then( m => m.CameraTestPageModule)
+    loadChildren: () => import('./pages/camera-test/camera-test.module').then(m => m.CameraTestPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'some',
+    component: SomeComponent,
+    canActivate: [AuthGuard]
   },
   { path: '**', redirectTo: 'notfound' },
- 
 ];
 
 @NgModule({

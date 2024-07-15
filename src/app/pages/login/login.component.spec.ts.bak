@@ -1,0 +1,48 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { StoreModule, Store } from '@ngrx/store';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { LoginComponent } from './login.component';
+import { AppState } from '../../store';  // Ajusta esta ruta
+import { reducers } from '../../store';  // Ajusta esta ruta
+import { ApiService } from '../../services/api.service';  // Ajusta esta ruta
+import { loadDataSuccess } from '../../store/actions';  // Ajusta esta ruta
+
+describe('LoginComponent', () => {
+  let component: LoginComponent;
+  let fixture: ComponentFixture<LoginComponent>;
+  let store: Store<AppState>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [LoginComponent],
+      imports: [
+        StoreModule.forRoot(reducers),
+        HttpClientTestingModule  // Asegúrate de importar esto para las pruebas HTTP
+      ],
+      providers: [ApiService]
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(LoginComponent);
+    component = fixture.componentInstance;
+    store = TestBed.inject(Store);
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should dispatch loadData action on init', () => {
+    spyOn(store, 'dispatch');
+    component.ngOnInit();
+    expect(store.dispatch).toHaveBeenCalled();
+  });
+
+  it('should update data from store', () => {
+    const testData = { example: 'data' };
+    store.dispatch(loadDataSuccess({ data: testData }));
+    store.select(state => state.dataState.data).subscribe(data => {
+      expect(component.data).toEqual(testData);
+    });
+  });
+});

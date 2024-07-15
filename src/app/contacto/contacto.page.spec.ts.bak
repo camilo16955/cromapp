@@ -1,0 +1,66 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { IonicModule } from '@ionic/angular';
+import { ContactoPage } from './contacto.page';
+
+describe('ContactoPage', () => {
+  let component: ContactoPage;
+  let fixture: ComponentFixture<ContactoPage>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ContactoPage],
+      imports: [IonicModule.forRoot(), FormsModule]
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(ContactoPage);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should register a user and clear fields', () => {
+    component.nombre = 'John';
+    component.apellido = 'Doe';
+    component.Correo = 'john.doe@example.com';
+    component.Telefono = '1234567890';
+    component.Genero = 'Masculino';
+    component.Ciudad = 'Some City';
+    component.Banda = 'Some Band';
+
+    component.registrarusuario();
+
+    expect(component.nombre).toBe('');
+    expect(component.apellido).toBe('');
+    expect(component.Correo).toBe('');
+    expect(component.Telefono).toBe('');
+    expect(component.Genero).toBe('');
+    expect(component.Ciudad).toBe('');
+    expect(component.Banda).toBe('');
+  });
+
+  it('should log the user details on register', () => {
+    spyOn(console, 'log');
+
+    component.nombre = 'John';
+    component.apellido = 'Doe';
+    component.Correo = 'john.doe@example.com';
+    component.Telefono = '1234567890';
+    component.Genero = 'Masculino';
+    component.Ciudad = 'Some City';
+    component.Banda = 'Some Band';
+
+    component.registrarusuario();
+
+    expect(console.log).toHaveBeenCalledWith('nombre', 'John');
+    expect(console.log).toHaveBeenCalledWith('apellido', 'Doe');
+    expect(console.log).toHaveBeenCalledWith('correo', 'john.doe@example.com');
+    expect(console.log).toHaveBeenCalledWith('telefono', '1234567890');
+    expect(console.log).toHaveBeenCalledWith('Genero', 'Masculino');
+    expect(console.log).toHaveBeenCalledWith('Ciudad', 'Some City');
+    expect(console.log).toHaveBeenCalledWith('Banda', 'Some Band');
+  });
+});

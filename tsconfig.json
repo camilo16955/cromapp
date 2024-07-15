@@ -1,6 +1,4 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
-  "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
@@ -15,6 +13,7 @@
     "downlevelIteration": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
     "importHelpers": true,
     "target": "es2022",
     "module": "es2020",
@@ -29,11 +28,18 @@
     "types": [
       "jasmine",
       "node"
-    ]
+    ],
+    "skipLibCheck": true
   },
+  "include": [
+    "src/**/*.ts"
+  ],
   "exclude": [
     "node_modules",
-    "**/*.spec.ts"
+    "e2e/**/*.ts",
+    "src/**/*.spec.ts.bak",
+    "e2e/**/*.spec.ts.bak",
+    "src/backup_tests/**/*"
   ],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

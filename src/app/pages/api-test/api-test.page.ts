@@ -7,16 +7,28 @@ import { ApiService } from '../../services/api.service';
   styleUrls: ['./api-test.page.scss'],
 })
 export class ApiTestPage implements OnInit {
+
   data: any[] = [];
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService) { }
 
-  async ngOnInit() {
-    await this.apiService.createDatabase();
-    this.fetchData();
+  ngOnInit() {
+    this.loadData();
+  }
+
+  async loadData() {
+    try {
+      this.data = await this.apiService.getData();
+    } catch (error) {
+      console.error('Error loading data', error);
+    }
   }
 
   async fetchData() {
-    this.data = await this.apiService.getData();
+    try {
+      this.data = await this.apiService.getData();
+    } catch (error) {
+      console.error('Error fetching data', error);
+    }
   }
 }

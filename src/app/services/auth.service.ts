@@ -1,29 +1,42 @@
-// src/app/services/auth.service.ts
 import { Injectable } from '@angular/core';
+import SecureLS from 'secure-ls';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private isAuthenticated = false;
+  private ls: SecureLS;
 
-  private loggedIn = false;
-
-  constructor() { }
+  constructor(private router: Router) {
+    this.ls = new SecureLS();
+    this.isAuthenticated = !!this.ls.get('token');
+  }
 
   login(username: string, password: string): boolean {
     // Lógica de autenticación simulada
-    if (username === 'user' && password === 'password') {
-      this.loggedIn = true;
+    if (username === 'cromapp' && password === 'crompass') {
+      this.isAuthenticated = true;
+      this.ls.set('token', 'fake-jwt-token'); // Simular almacenamiento de token
       return true;
+    } else {
+      this.isAuthenticated = false;
+      return false;
     }
-    return false;
-  }
-
-  logout(): void {
-    this.loggedIn = false;
   }
 
   isLoggedIn(): boolean {
-    return this.loggedIn;
+    return this.isAuthenticated;
+  }
+
+  logout() {
+    this.isAuthenticated = false;
+    this.ls.remove('token'); // Eliminar token al cerrar sesión
+    this.router.navigate(['/login']);
+  }
+
+  getToken(): string | null {
+    return this.ls.get('token');
   }
 }

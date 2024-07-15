@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, from } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { CapacitorSQLite, SQLiteDBConnection } from '@capacitor-community/sqlite';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +12,8 @@ export class ApiService {
   private apiUrl = 'https://jsonplaceholder.typicode.com';
   private db: SQLiteDBConnection | null = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
-  // Método para crear la base de datos
   async createDatabase() {
     try {
       const dbResult: any = await CapacitorSQLite.createConnection({
@@ -35,7 +35,6 @@ export class ApiService {
     }
   }
 
-  // Método para crear tablas
   private async createTables() {
     if (!this.db) {
       console.error('Database connection is not established');
@@ -55,7 +54,6 @@ export class ApiService {
     }
   }
 
-  // Método para guardar datos
   async saveData(data: string) {
     if (!this.db) {
       console.error('Database connection is not established');
@@ -70,7 +68,6 @@ export class ApiService {
     }
   }
 
-  // Método para recuperar datos
   async fetchData(): Promise<any[]> {
     if (!this.db) {
       console.error('Database connection is not established');
@@ -87,9 +84,13 @@ export class ApiService {
     }
   }
 
-  // Método para obtener datos desde la API
   getDataFromApi(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/posts`).pipe(
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+
+    return this.http.get<any[]>(`${this.apiUrl}/posts`, { headers }).pipe(
       catchError(error => {
         console.error('Error fetching data from API', error);
         return from(this.fetchData().then(data => data || []));
@@ -97,7 +98,6 @@ export class ApiService {
     );
   }
 
-  // Método para obtener datos, intentará primero desde la API y luego desde la base de datos si falla
   async getData(): Promise<any[]> {
     try {
       const data = await this.getDataFromApi().toPromise() || [];
